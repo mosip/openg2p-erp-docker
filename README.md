@@ -16,7 +16,29 @@ recourse.
 The CRM provides an interface with rich set of tools for managing beneficiaries,
 payments, complaints, and more. It is built on the OCB port of Odoo
 
+## Installation on Kubernetes Cluster
+
+- Install the helm chart given in the current directory.
+  ```
+  cd helm;
+  helm dependency update
+  helm install openg2p-erp . -n <NS>
+  ```
+- Give Superuser and create pg_trgm extension:
+  ```
+  kubectl exec -it openg2p-erp-postgresql-0 -n <NS> -- bash -c 'PGPASSWORD=$POSTGRES_POSTGRES_PASSWORD psql -U postgres -d openg2p -c "alter role openg2p superuser;"; PGPASSWORD=$POSTGRES_POSTGRES_PASSWORD psql -U postgres -d openg2p -c "create extension pg_trgm;"'
+  ```
+- Login in to ERP after installation;
+  - In Settings -> General Settings -> Activate Developer Mode (on right side)
+  - Back In Apps -> "Update App List" on top bar -> Update
+  - Later in the Apps section; remove "Apps" search filter, then search and install "ODK Connector" module.
+  - After above installation (keep checking logs), then search and install "OpenG2P Packaging" module.
+  - After above, install "OpenG2P Process" module.
+- Note: if the ERP pod is ever killed, it will fail to reinitialize. The helm chart has to be reinstalled in that case.
+
 ## Using in Production
+
+The following method is obsolete. Install using the above helm chart.
 
 ### Get the Code
 
