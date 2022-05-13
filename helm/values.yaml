@@ -393,7 +393,7 @@ initContainers:
     command: ["/bin/sh", "-c"]
     args:
       [
-        "wget --no-check-certificate -O openg2p-erp-community-addon-0.1-rc1.zip https://github.com/mosip/openg2p-erp-community-addon/archive/0.1-rc1.zip && wget --no-check-certificate -O openg2p-erp-0.1-rc1.zip https://github.com/mosip/openg2p-erp/archive/0.1-rc1.zip && unzip openg2p-erp-community-addon-0.1-rc1.zip -d ./tmp && unzip openg2p-erp-0.1-rc1.zip -d ./tmp && mv ./tmp/openg2p-erp-0.1-rc1 ./tmp/openg2p-erp-community-addon-0.1-rc1 /mnt/extra-addons",
+        "wget --no-check-certificate -O openg2p-erp-community-addon-0.1-rc1.zip https://github.com/mosip/openg2p-erp-community-addon/archive/0.1-rc1.zip && wget --no-check-certificate -O openg2p-erp-0.1-rc2.zip https://github.com/mosip/openg2p-erp/archive/0.1-rc2.zip && unzip openg2p-erp-community-addon-0.1-rc1.zip -d ./tmp && unzip openg2p-erp-0.1-rc2.zip -d ./tmp && mv ./tmp/openg2p-erp-0.1-rc2 ./tmp/openg2p-erp-community-addon-0.1-rc1 /mnt/extra-addons",
       ]
     volumeMounts:
       - name: odoo-addons
