@@ -162,7 +162,17 @@ args: []
 ##   - name: FOO
 ##     value: "bar"
 ##
-extraEnvVars: []
+extraEnvVars:
+- name: SHOULD_DEMO_AUTH
+  value: "false"
+- name: DEMO_AUTHENTICATE_URL
+  value: "http://openg2p-mosip-mediator/demoAuth"
+- name: PROGRAM_ENROLLMENT_ON_IMPORT_SHOULD_CREATE_BENEFICIARY
+  value: "true"
+- name: PROGRAM_ENROLLMENT_ON_IMPORT_BENEFICIARY_BASE_ID
+  value: "taxid"
+- name: PROGRAM_ENROLLMENT_ON_IMPORT_BENEFICIARY_BASE_ID_LABEL
+  value: "Tax ID"
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM: ""

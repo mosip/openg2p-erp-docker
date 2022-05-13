@@ -33,7 +33,9 @@ payments, complaints, and more. It is built on the OCB port of Odoo
   - Back In Apps -> "Update App List" on top bar -> Update
   - Later in the Apps section; remove "Apps" search filter, then search and install "ODK Connector" module.
   - After above installation (keep checking logs), then search and install "OpenG2P Packaging" module.
-  - After above, install "OpenG2P Process" module.
+  - After above, navigate to "Beneficiaries" app. Then click on "Configuration" -> "Identifications". Create new Identification with
+    - Code: `taxid`
+    - ID Name: `Tax ID`
 - Note: if the ERP pod is ever killed, it will fail to reinitialize. The helm chart has to be reinstalled in that case.
 
 ## Using in Production
