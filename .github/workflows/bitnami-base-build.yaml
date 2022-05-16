@@ -1,0 +1,42 @@
+name: Openg2p Erp Helm Base Docker Build upon push
+
+on:
+  push:
+    paths:
+      - helm/Dockerfile
+jobs:
+  openg2p-erp-bitnami-base-build:
+    runs-on: ubuntu-latest
+    env:
+      NAMESPACE: ${{ secrets.dev_namespace_docker_hub }}
+      SERVICE_NAME: openg2p-erp-bitnami-base
+      SERVICE_LOCATION: helm
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup branch and env
+        run: |
+          # Strip git ref prefix from version
+          echo "BRANCH_NAME=$(echo ${{ github.ref }} | sed -e 's,.*/\(.*\),\1,')" >> $GITHUB_ENV
+      - name: Docker build & push
+        run: |
+          cd "./${{env.SERVICE_LOCATION}}"
+          docker build . --tag ${{ env.SERVICE_NAME }} --build-arg BRANCH_NAME=$BRANCH_NAME
+      - name: Docker login
+        run: |
+          echo "${{ secrets.token_docker_hub }}" | docker login -u ${{ secrets.actor_docker_hub }} --password-stdin
+      - name: Docker push
+        run: |
+          IMAGE_ID=$NAMESPACE/$SERVICE_NAME
+          
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          if [[ $BRANCH_NAME == master || $BRANCH_NAME==main ]]; then
+            VERSION=latest
+          else
+            VERSION=$BRANCH_NAME
+          fi
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          docker tag $SERVICE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
