@@ -14,7 +14,7 @@
     ```
     helm repo add bitnami https://charts.bitnami.com/bitnami
     helm repo update bitnami
-    helm install openg2p-erp -n <NS> --version 19.0.13 -f values.yaml
+    helm -n <NS> install openg2p-erp bitnami/odoo --version 19.0.13 -f values.yaml
     ```
 - Once the installation finishes (initial installation will take sometime), Login in to ERP at the specified hostname. Required Modules should already be installed.
 - Upon initial login, navigate to "Beneficiaries" app. Then click on "Configuration" -> "Identifications". Create new Identification with:
