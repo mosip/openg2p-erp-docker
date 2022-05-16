@@ -31,7 +31,7 @@ jobs:
           
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-          if [[ $BRANCH_NAME == master || $BRANCH_NAME==main ]]; then
+          if [[ $BRANCH_NAME == master || $BRANCH_NAME == main ]]; then
             VERSION=latest
           else
             VERSION=$BRANCH_NAME
