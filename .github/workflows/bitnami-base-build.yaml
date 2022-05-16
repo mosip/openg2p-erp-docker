@@ -24,7 +24,7 @@ jobs:
           docker build . --tag ${{ env.SERVICE_NAME }} --build-arg BRANCH_NAME=$BRANCH_NAME
       - name: Docker login
         run: |
-          echo "${{ secrets.token_docker_hub }}" | docker login -u ${{ secrets.actor_docker_hub }} --password-stdin
+          echo "${{ secrets.release_docker_hub }}" | docker login -u ${{ secrets.actor_docker_hub }} --password-stdin
       - name: Docker push
         run: |
           IMAGE_ID=$NAMESPACE/$SERVICE_NAME
