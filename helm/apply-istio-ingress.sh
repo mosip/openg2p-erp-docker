@@ -1,19 +1,20 @@
 #!/bin/bash
 
 if [ "$#" -lt 2 ]; then
-    echo "Usage: ./apply-istio-ingress.sh <NS> <hostname> [erp-service-name] [istio-selector]"
+  echo "Usage: ./apply-istio-ingress.sh <NS> <hostname> [erp-service-name] [istio-selector]"
+  exit 1
 fi
 
 if [ -z "$3" ] || [ "$3" = "." ] ; then
-    ERP_SERVICE_NAME="openg2p-erp-odoo"
+  ERP_SERVICE_NAME="openg2p-erp-odoo"
 else
-    ERP_SERVICE_NAME="$3"
+  ERP_SERVICE_NAME="$3"
 fi
 
 if [ -z "$4" ]; then
-    ISTIO_SELECTOR="istio: ingressgateway"
+  ISTIO_SELECTOR="istio: ingressgateway"
 else
-    ISTIO_SELECTOR="$4"
+  ISTIO_SELECTOR="$4"
 fi
 
 echo "
