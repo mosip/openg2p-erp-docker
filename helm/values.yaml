@@ -47,12 +47,15 @@ customPostInitScripts:
     unzip /tmp/openg2p-erp-community-addon.zip -d /tmp &&
     unzip /tmp/openg2p-erp.zip -d /tmp &&
     cp -rf /tmp/openg2p-erp*/* /bitnami/odoo/addons
+    TO_REPLACE=$(grep -i limit_time_real /opt/bitnami/odoo/conf/odoo.conf); sed -i "s/$TO_REPLACE/limit_time_real = $LIMIT_TIME_REAL/g" /opt/bitnami/odoo/conf/odoo.conf
+    TO_REPLACE=$(grep -i list_db /opt/bitnami/odoo/conf/odoo.conf); sed -i "s/$TO_REPLACE/list_db = False/g" /opt/bitnami/odoo/conf/odoo.conf
     if [[ ! -f "/bitnami/odoo/.openg2p_modules_initialized" ]]; then
       chown -R odoo:root /bitnami/odoo/
       . /opt/bitnami/odoo/venv/bin/activate &&
       /opt/bitnami/odoo/bin/odoo \
           --config /opt/bitnami/odoo/conf/odoo.conf \
-          -i base,odk-connector,openg2p_package --without-demo=all \
+          -i base,odk-connector,openg2p_package \
+          --without-demo=all \
           --stop-after-init &&
       deactivate
       chown -R odoo:root /bitnami/odoo/
@@ -96,6 +99,8 @@ extraEnvVars:
   value: "0.1-rc1"
 - name: ODOO_SKIP_MODULES_UPDATE
   value: "true"
+- name: LIMIT_TIME_REAL
+  value: "10000"
 - name: SHOULD_DEMO_AUTH
   value: "false"
 - name: DEMO_AUTHENTICATE_URL
