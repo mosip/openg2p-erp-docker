@@ -1,7 +1,7 @@
 image:
   registry: docker.io
   repository: mosipdev/openg2p-erp-bitnami-base
-  tag: develop
+  tag: 0.1-rc3
   # repository: bitnami/odoo
   # tag: 12.0.20210915-debian-10-r40
   pullPolicy: Always
@@ -94,9 +94,9 @@ extraEnvVars:
 - name: OPENG2P_CA_REPO
   value: "https://github.com/mosip/openg2p-erp-community-addon"
 - name: OPENG2P_ERP_BRANCH
-  value: "develop"
+  value: "0.1-rc3"
 - name: OPENG2P_CA_BRANCH
-  value: "0.1-rc1"
+  value: "0.1-rc3"
 - name: ODOO_SKIP_MODULES_UPDATE
   value: "true"
 - name: LIMIT_TIME_REAL
