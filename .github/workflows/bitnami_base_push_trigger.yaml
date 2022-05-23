@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - helm/Dockerfile
+  workflow_dispatch:
+
 jobs:
   openg2p-erp-bitnami-base-build:
     runs-on: ubuntu-latest

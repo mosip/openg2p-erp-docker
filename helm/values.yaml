@@ -96,7 +96,7 @@ extraEnvVars:
 - name: OPENG2P_ERP_BRANCH
   value: "develop"
 - name: OPENG2P_CA_BRANCH
-  value: "0.1-rc1"
+  value: "develop"
 - name: ODOO_SKIP_MODULES_UPDATE
   value: "true"
 - name: LIMIT_TIME_REAL
