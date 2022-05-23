@@ -29,7 +29,7 @@
 - If persistence is on:
   - To apply any config changes in helm values.yaml, run the following (This will NOT update/reinitialize the database with the latest changes).
     ```
-    helm upgrade openg2p-erp -n <NS> --version 19.0.13 -f updated-values.yaml
+    helm upgrade openg2p-erp bitnami/odoo -n <NS> --version 19.0.13 -f updated-values.yaml
     ```
   - To pull in latest code of the current branch from github, run the following on the erp pods (This will NOT update/reinitialize the database with the latest changes).
     - ```
