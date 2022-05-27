@@ -1,6 +1,6 @@
 FROM bitnami/odoo:12.0.20210915-debian-10-r40
 
-ARG BRANCH_NAME=develop
+ARG BRANCH_NAME=0.1-rc4
 
 RUN install_packages wget unzip
 RUN . /opt/bitnami/odoo/venv/bin/activate && \
